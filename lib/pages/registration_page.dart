@@ -53,7 +53,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           child: AppBar(
             title: const Text("Registration",
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.2,
             ),

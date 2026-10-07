@@ -40,7 +40,7 @@ class ConfirmRegistrationPage extends StatelessWidget {
           child: AppBar(
             title: const Text("Confirm Registration",
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.2,
               ),
