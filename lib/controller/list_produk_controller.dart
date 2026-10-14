@@ -1,6 +1,8 @@
 import 'package:flutter_application_1/produk/produk_model.dart';
 import 'package:get/get.dart';
 
+// FUNGSI : Tempat menyimpan DATA daftar produk (otak/logika)
+// Halaman list tinggal mengambil data dari sini
 class ListProdukController extends GetxController {
   List<ProdukModel> listproduk = [
     ProdukModel(

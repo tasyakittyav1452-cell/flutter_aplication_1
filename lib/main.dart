@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/kalkulator_page2.dart';
 import 'package:flutter_application_1/routes.dart';
-import 'package:flutter_application_1/login_page.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -13,10 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // FUNGSI: GetMaterialApp = MaterialApp versi GetX, wajib agar
+    // Get.toNamed / Get.back / getPages bisa dipakai
     return GetMaterialApp(
         title: "BelajarFlutter PPLG 3",
-      initialRoute: Routes.listProduk,
-      getPages: Routes.myPages,
+      initialRoute: Routes.listProduk, // halaman pertama yang dibuka
+      getPages: Routes.myPages, // daftar semua rute
     );
   }
 }

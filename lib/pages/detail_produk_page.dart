@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/controller/detail_produk_controller.dart';
 import 'package:get/get.dart';
 import '../produk/produk_model.dart';
 
+// PERHATIKAN: TIDAK ada "final ProdukModel produk" dan tidak ada constructor
+// yang meminta produk. Data diambil dari controller
 class DetailProdukPage extends StatelessWidget {
   const DetailProdukPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final ProdukModel produk = Get.arguments;
+    //FUNGSI: Get.put membuat controller -> onInit() membaca Get.arguments
+    final controller = Get.put(DetailProdukController());
+    final produk = controller.produk;
 
     return Scaffold(
+      // ==== STYLE: AppBar gradasi ====
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: Container(
@@ -37,8 +43,10 @@ class DetailProdukPage extends StatelessWidget {
           ),
         ),
       ),
+      // FUNGSI: SingleChildScrollView = isi bisa di scroll kalau panjang
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
+        // ==== STYLE: Card pembungkus ====
         child: Card(
           color: Colors.cyan[50],
           elevation: 6,
@@ -51,15 +59,16 @@ class DetailProdukPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // 1. Bagian Gambar Produk (HANYA INI YANG DIGANTI)
+                // FUNGSI: Image.network = tampilkan gambar dari URL
                 Center(
-                  child: ClipRRect(
+                  child: ClipRRect( //STYLE: Sudut gambar membulat
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
                       produk.image,
                       height: 120,
                       width: 120,
                       fit: BoxFit.cover,
+                      //FUNGSI: Tampil ikon cadangan jika gambar gagal dimuat
                       errorBuilder: (context, error, stackTrace) {
                         return Container(
                           height: 120,
@@ -74,11 +83,11 @@ class DetailProdukPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
-                Text(produk.namaproduk, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 20), // FUNGSI: jarak kosong
+                Text(produk.namaproduk, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)), //STYLE
                 const SizedBox(height: 8),
-                Text("Harga: ${produk.harga}", style: const TextStyle(fontSize: 18, color: Colors.blueAccent, fontWeight: FontWeight.bold)),
-                const Divider(height: 24, color: Colors.cyan),
+                Text("Harga: ${produk.harga}", style: const TextStyle(fontSize: 18, color: Colors.blueAccent, fontWeight: FontWeight.bold)), //STYLE
+                const Divider(height: 24, color: Colors.cyan), // FUNGSI: garis pemisah
                 Text("Nama Toko: ${produk.namaToko}", style: const TextStyle(fontSize: 15)),
                 const SizedBox(height: 8),
                 Text("Rating: ${produk.rating} (${produk.reviews})", style: const TextStyle(fontSize: 15)),
@@ -91,11 +100,11 @@ class DetailProdukPage extends StatelessWidget {
                   width: double.infinity,
                   height: 45,
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
+                    style: ElevatedButton.styleFrom( // STYLE: warna tombol
                       backgroundColor: Colors.cyan[700],
                       foregroundColor: Colors.white,
                     ),
-                    onPressed: () => Get.back(),
+                    onPressed: () => Get.back(), // FUNGSI: kembali ke halaman sebelumnya
                     child: const Text("Kembali"),
                   ),
                 ),
