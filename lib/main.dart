@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     // Get.toNamed / Get.back / getPages bisa dipakai
     return GetMaterialApp(
         title: "BelajarFlutter PPLG 3",
-      initialRoute: Routes.listProduk, // halaman pertama yang dibuka
+      initialRoute: Routes.mainMenuPage, // halaman pertama yang dibuka
       getPages: Routes.myPages, // daftar semua rute
     );
   }

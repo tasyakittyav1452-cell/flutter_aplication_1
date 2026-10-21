@@ -12,7 +12,7 @@ class DetailProdukPage extends StatelessWidget {
   Widget build(BuildContext context) {
     //FUNGSI: Get.put membuat controller -> onInit() membaca Get.arguments
     final controller = Get.put(DetailProdukController());
-    final produk = controller.produk;
+
 
     return Scaffold(
       // ==== STYLE: AppBar gradasi ====
@@ -36,7 +36,7 @@ class DetailProdukPage extends StatelessWidget {
             ],
           ),
           child: AppBar(
-            title: Text(produk.namaproduk, style: const TextStyle(color: Colors.white)),
+            title: Text(controller.produk.namaproduk, style: const TextStyle(color: Colors.white)),
             backgroundColor: Colors.transparent,
             elevation: 0,
             foregroundColor: Colors.white,
@@ -64,7 +64,7 @@ class DetailProdukPage extends StatelessWidget {
                   child: ClipRRect( //STYLE: Sudut gambar membulat
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
-                      produk.image,
+                      controller.produk.image,
                       height: 120,
                       width: 120,
                       fit: BoxFit.cover,
@@ -84,17 +84,17 @@ class DetailProdukPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20), // FUNGSI: jarak kosong
-                Text(produk.namaproduk, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)), //STYLE
+                Text(controller.produk.namaproduk, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)), //STYLE
                 const SizedBox(height: 8),
-                Text("Harga: ${produk.harga}", style: const TextStyle(fontSize: 18, color: Colors.blueAccent, fontWeight: FontWeight.bold)), //STYLE
+                Text("Harga: ${controller.produk.harga}", style: const TextStyle(fontSize: 18, color: Colors.blueAccent, fontWeight: FontWeight.bold)), //STYLE
                 const Divider(height: 24, color: Colors.cyan), // FUNGSI: garis pemisah
-                Text("Nama Toko: ${produk.namaToko}", style: const TextStyle(fontSize: 15)),
+                Text("Nama Toko: ${controller.produk.namaToko}", style: const TextStyle(fontSize: 15)),
                 const SizedBox(height: 8),
-                Text("Rating: ${produk.rating} (${produk.reviews})", style: const TextStyle(fontSize: 15)),
+                Text("Rating: ${controller.produk.rating} (${controller.produk.reviews})", style: const TextStyle(fontSize: 15)),
                 const SizedBox(height: 12),
                 const Text("Deskripsi:", style: TextStyle(fontWeight: FontWeight.bold)),
                 const SizedBox(height: 4),
-                Text(produk.description, style: const TextStyle(color: Colors.black87)),
+                Text(controller.produk.description, style: const TextStyle(color: Colors.black87)),
                 const SizedBox(height: 24),
                 SizedBox(
                   width: double.infinity,
