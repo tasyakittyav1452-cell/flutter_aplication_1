@@ -1,3 +1,4 @@
+import 'package:flutter_application_1/menu/profile_page.dart';
 import 'package:flutter_application_1/pages/confirm_registration.dart';
 import 'package:flutter_application_1/pages/registration_page.dart';
 import 'package:flutter_application_1/pages/list_produk_pages.dart';
@@ -12,6 +13,7 @@ class Routes {
   static const String listProduk = "/listProduk";
   static const String detailProduk = "/detailProduk";
   static const String mainMenuPage = "/mainmenupage";
+  static const String profile = "/profile";
 
 
   // FUNGSI: Daftar halaman yang menghubungkan nama rute dengan widget halamannya
@@ -22,6 +24,7 @@ class Routes {
     // Perhatikan: TIDAK ada produk di sini. Data dikirim lewat arguments saat navigasi.
     GetPage(name: detailProduk, page: () => DetailProdukPage()),
     GetPage(name: mainMenuPage, page: () => MainMenuPage()),
+    GetPage(name: profile, page: () => const ProfilePage()),
 
   ];
 }

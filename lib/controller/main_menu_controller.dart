@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_application_1/menu/history_page.dart';
 import 'package:flutter_application_1/menu/home_page.dart';
 import 'package:flutter_application_1/menu/profile_page.dart';
@@ -15,4 +16,8 @@ class MainMenuController extends GetxController{
   }
 
   List<Widget> listPages = [HomePage(), HistoryPage(), ProfilePage()];
+
+  void exitApp() {
+    SystemNavigator.pop();
+  }
 }
