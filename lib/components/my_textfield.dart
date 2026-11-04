@@ -23,10 +23,25 @@ class MyTextfield extends StatelessWidget {
       controller: txtController,
       keyboardType: keyboardType,
       inputFormatters: inputFormatters,
+      // agar teks yang diketik berwarna putih terang
+      style: const TextStyle(
+        color: Colors.white,
+        fontSize: 14,
+      ),
       decoration: InputDecoration(
         hintText: myHint,
+        // agar warna tulisan hint/petunjuk tidak terlalu gelap
+        hintStyle: const TextStyle(color: Colors.white54),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius),
+          borderSide: const BorderSide(color: Colors.white24), // Warna garis pinggir saat tidak diklik
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius),
+          borderSide: const BorderSide(color: Colors.redAccent), // Warna garis pinggir saat diklik (sesuai tema gothic)
         ),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
