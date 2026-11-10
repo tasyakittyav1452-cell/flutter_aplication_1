@@ -82,39 +82,33 @@ class LoginCloneFixPage extends StatelessWidget {
               const SizedBox(height: 30),
 
               // TOMBOL MASUK DENGAN KONDISI LOADING (OBX)
-              Obx(() {
-                if (controller.isloading.value) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.redAccent,
-                    ),
-                  );
-                } else {
-                  return SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        controller.login();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red.shade900,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                      ),
-                      child: const Text(
-                        'Masuk',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  );
-                }
-              }),
+              Obx(
+                    () => controller.isloading.value
+                    ? const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.redAccent,
+                  ),
+                )
+                    : MyButton(
+                  text: "Login",
+                  onPressed: () {
+                    controller.login((success, message) {
+                      if (success) {
+                        Get.snackbar(
+                            "berhasil",
+                            message,
+                        backgroundColor: Colors.green,
+                        colorText: Colors.white);
+                        Get.offNamed('/mainmenupage');
+                      } else {
+                        Get.snackbar("Gagal", message,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white);
+                      }
+                    });
+                  },
+                ),
+              ), // <-- Tanda koma penutup Obx sangat penting di sini!
 
               const SizedBox(height: 20),
 
