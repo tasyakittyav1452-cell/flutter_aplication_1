@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/produk/produk_model.dart';
 import 'package:get/get.dart';
+import 'package:flutter_application_1/product_model.dart';
 
 // FUNGSI : Tempat menyimpan DATA daftar produk (otak/logika)
 // Halaman list tinggal mengambil data dari sini
@@ -8,7 +9,7 @@ class ListProdukController extends GetxController {
   // buat menyimpan teks yang diketik di kolom pencarian
   final TextEditingController searchController = TextEditingController();
 
-  final RxList<ProdukModel> listproduk = <ProdukModel>[].obs;
+  final RxList<ProductModel> listproduk = <ProductModel>[].obs;
   var isloading = false.obs;
 
   @override
@@ -23,54 +24,36 @@ class ListProdukController extends GetxController {
     String jsonString = '''
     [
       {
-        "namaproduk": "Samsung Galaxy",
-        "harga": "10 juta",
-        "description": "Smartphone canggih dengan layar AMOLED dan performa ngebut.",
+        "id": 1,
+        "name": "Samsung Galaxy",
+        "price": "10 juta",
         "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500",
-        "reviews": "120 Ulasan",
+        "storeName": "Samsung Official Store",
         "rating": "4.8",
-        "namaToko": "Samsung Official Store"
+        "description": "Smartphone canggih dengan layar AMOLED dan performa ngebut."
       },
       {
-        "namaproduk": "Iphone 20",
-        "harga": "25 juta",
-        "description": "Generasi terbaru iPhone dengan chipset super cepat dan kamera profesional.",
+        "id": 2,
+        "name": "Iphone 20",
+        "price": "25 juta",
         "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500",
-        "reviews": "95 Ulasan",
+        "storeName": "Apple Store Indo",
         "rating": "4.9",
-        "namaToko": "Apple Store Indo"
+        "description": "Generasi terbaru iPhone dengan chipset super cepat."
       },
       {
-        "namaproduk": "Laptop ROG",
-        "harga": "30 juta",
-        "description": "Laptop gaming gahar libas semua game AAA rata kanan.",
+        "id": 3,
+        "name": "Laptop ROG",
+        "price": "30 juta",
         "image": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500",
-        "reviews": "210 Ulasan",
+        "storeName": "ROG Gamers Zone",
         "rating": "5.0",
-        "namaToko": "ROG Gamers Zone"
-      },
-      {
-        "namaproduk": "PS 5",
-        "harga": "8 juta",
-        "description": "Konsol game next-gen pengalaman bermain tanpa batas dengan grafik 4K.",
-        "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500",
-        "reviews": "340 Ulasan",
-        "rating": "4.9",
-        "namaToko": "Sony Center Kudus"
-      },
-      {
-        "namaproduk": "Smart TV Android",
-        "harga": "10 juta",
-        "description": "Televisi pintar jernih beresolusi 4K Ultra HD dengan sistem Android TV.",
-        "image": "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500",
-        "reviews": "88 Ulasan",
-        "rating": "4.7",
-        "namaToko": "Elektronik Jaya"
+        "description": "Laptop gaming gahar libas semua game AAA rata kanan."
       }
     ]
     ''';
 
-    listproduk.value = produkModelFromJson(jsonString);
+    listproduk.value = productModelFromJson(jsonString);
     isloading.value = false;
   }
 
@@ -79,7 +62,7 @@ class ListProdukController extends GetxController {
    loadProdukDariJson();
   }
 
-  void hapusProduk(ProdukModel produk) {
+  void hapusProduk(ProductModel produk) {
     listproduk.remove(produk);
   }
 }

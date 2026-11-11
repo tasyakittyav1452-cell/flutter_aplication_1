@@ -3,6 +3,7 @@ import 'package:flutter_application_1/controller/list_produk_controller.dart';
 import 'package:flutter_application_1/produk/produk_model.dart';
 import 'package:flutter_application_1/routes.dart'; // <- yang kurang
 import 'package:get/get.dart';
+import 'package:flutter_application_1/product_model.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -30,7 +31,7 @@ class HomePage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemCount: controller.listproduk.length,
                         itemBuilder: (context, index) {
-                          final ProdukModel produk = controller.listproduk[index];
+                          final ProductModel produk = controller.listproduk[index];
                           return InkWell(
                             onTap: () {
                               Get.toNamed(Routes.detailProduk, arguments: produk);
@@ -64,12 +65,12 @@ class HomePage extends StatelessWidget {
                                     ),
                                     ),
                                     const SizedBox(height: 8), //jarak kosong
-                                    Text(produk.namaproduk,
+                                    Text(produk.name,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis, // teks panjang jadi ".."
                                     style: const TextStyle(fontWeight: FontWeight.bold),
                                     ),
-                                    Text(produk.harga),
+                                    Text(produk.price),
                                   ],
                                 ),
                                 ),

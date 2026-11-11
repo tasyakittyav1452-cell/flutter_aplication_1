@@ -3,6 +3,7 @@ import 'package:flutter_application_1/routes.dart';
 import 'package:get/get.dart';
 import 'package:flutter_application_1/controller/list_produk_controller.dart';
 import 'package:flutter_application_1/produk/produk_model.dart';
+import 'package:flutter_application_1/product_model.dart';
 
 class ListProdukPages extends StatelessWidget {
   ListProdukPages({super.key});
@@ -63,7 +64,7 @@ class ListProdukPages extends StatelessWidget {
               () => ListView.builder(
             itemCount: controller.listproduk.length,
             itemBuilder: (context, index) {
-              final ProdukModel produk = controller.listproduk[index];
+              final ProductModel produk = controller.listproduk[index];
 
               // Catatan: Mengatur warna gradasi khusus untuk masing-masing card produk
               // sesuai dengan ide warna yang kamu minta sebelumnya.
@@ -71,28 +72,23 @@ class ListProdukPages extends StatelessWidget {
               Color textColor;
               Color subTextColor;
 
-              if (produk.namaproduk.contains("Samsung")) {
-                // 1. Samsung Galaxy: Hitam, Abu-abu, dan Putih
+              if (produk.name.contains("Samsung")) {
                 cardColors = [Colors.black, Colors.grey.shade700, Colors.white70];
                 textColor = Colors.white;
                 subTextColor = Colors.white70;
-              } else if (produk.namaproduk.contains("Iphone")) {
-                // 2. Iphone 20: Hitam agak terang, Biru Tua, dan Biru Muda
+              } else if (produk.name.contains("Iphone")) {
                 cardColors = [const Color(0xFF2A2A2A), const Color(0xFF0D47A1), Colors.cyanAccent];
                 textColor = Colors.white;
                 subTextColor = Colors.cyan.shade100;
-              } else if (produk.namaproduk.contains("ROG")) {
-                // 3. Laptop ROG: Sesuai nuansa foto (Hitam & Merah menyala)
+              } else if (produk.name.contains("ROG")) {
                 cardColors = [Colors.black, const Color(0xFF8B0000), Colors.redAccent];
                 textColor = Colors.white;
                 subTextColor = Colors.red.shade100;
-              } else if (produk.namaproduk.contains("PS")) {
-                // 4. PS 5: Hitam dan Putih bersih
+              } else if (produk.name.contains("PS")) {
                 cardColors = [Colors.black, Colors.grey.shade400, Colors.white];
                 textColor = Colors.white;
                 subTextColor = Colors.grey.shade200;
               } else {
-                // 5. Smart TV Android: Biru Tua, Biru Muda, dan Putih
                 cardColors = [const Color(0xFF0A192F), Colors.blueAccent, Colors.white];
                 textColor = Colors.white;
                 subTextColor = Colors.white70;
@@ -127,14 +123,14 @@ class ListProdukPages extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   child: ListTile(
                     title: Text(
-                      produk.namaproduk,
+                      produk.name,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: textColor, // Warna teks disesuaikan agar kontras
                       ),
                     ),
                     subtitle: Text(
-                      produk.harga,
+                      produk.price,
                       style: TextStyle(color: subTextColor),
                     ),
                     trailing: const Icon(Icons.arrow_forward, color: Colors.white70),

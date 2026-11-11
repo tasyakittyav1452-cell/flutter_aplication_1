@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/detail_produk_controller.dart';
 import 'package:get/get.dart';
 import '../produk/produk_model.dart';
+import 'package:flutter_application_1/product_model.dart';
 
 // PERHATIKAN: TIDAK ada "final ProdukModel produk" dan tidak ada constructor
 // yang meminta produk. Data diambil dari controller
@@ -36,7 +37,7 @@ class DetailProdukPage extends StatelessWidget {
             ],
           ),
           child: AppBar(
-            title: Text(controller.produk.namaproduk, style: const TextStyle(color: Colors.white)),
+            title: Text(controller.produk.name, style: const TextStyle(color: Colors.white)),
             backgroundColor: Colors.transparent,
             elevation: 0,
             foregroundColor: Colors.white,
@@ -83,14 +84,13 @@ class DetailProdukPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20), // FUNGSI: jarak kosong
-                Text(controller.produk.namaproduk, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)), //STYLE
+                Text(controller.produk.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 8),
-                Text("Harga: ${controller.produk.harga}", style: const TextStyle(fontSize: 18, color: Colors.blueAccent, fontWeight: FontWeight.bold)), //STYLE
-                const Divider(height: 24, color: Colors.cyan), // FUNGSI: garis pemisah
-                Text("Nama Toko: ${controller.produk.namaToko}", style: const TextStyle(fontSize: 15)),
+                Text("Harga: ${controller.produk.price}", style: const TextStyle(fontSize: 18, color: Colors.blueAccent, fontWeight: FontWeight.bold)),
+                const Divider(height: 24, color: Colors.cyan),
+                Text("Nama Toko: ${controller.produk.storeName}", style: const TextStyle(fontSize: 15)),
                 const SizedBox(height: 8),
-                Text("Rating: ${controller.produk.rating} (${controller.produk.reviews})", style: const TextStyle(fontSize: 15)),
+                Text("Rating: ${controller.produk.rating}", style: const TextStyle(fontSize: 15)),
                 const SizedBox(height: 12),
                 const Text("Deskripsi:", style: TextStyle(fontWeight: FontWeight.bold)),
                 const SizedBox(height: 4),

@@ -26,7 +26,7 @@ class ProductModel {
     name: json["name"],
     price: json["price"],
     image: json["image"],
-    storeName: json["store_name"],
+    storeName: json["storeName"],
     rating: json["rating"],
     description: json["description"],
   );
