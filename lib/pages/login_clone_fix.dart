@@ -92,20 +92,7 @@ class LoginCloneFixPage extends StatelessWidget {
                     : MyButton(
                   text: "Login",
                   onPressed: () {
-                    controller.login((success, message) {
-                      if (success) {
-                        Get.snackbar(
-                            "berhasil",
-                            message,
-                        backgroundColor: Colors.green,
-                        colorText: Colors.white);
-                        Get.offNamed('/mainmenupage');
-                      } else {
-                        Get.snackbar("Gagal", message,
-                        backgroundColor: Colors.red,
-                        colorText: Colors.white);
-                      }
-                    });
+                    controller.login();
                   },
                 ),
               ), // <-- Tanda koma penutup Obx sangat penting di sini!

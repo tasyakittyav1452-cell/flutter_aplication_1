@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_application_1/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -9,38 +10,42 @@ class LoginController extends GetxController {
 
   var isloading = false.obs;
 
+  var loginModel = Rxn<LoginModel>();
+
   //ubah tipe dungsi agar bisa memberikan laporan status ke page
-  void login(Function(bool success, String message) onResult) async{
+  void login() async{
     if (emailController.text.isEmpty || passwordController.text.isEmpty) {
-      onResult(false, "Username dan Password harus diisi");
-    }
+      Get.snackbar("error", "username dan password harus terisi");
+    } else {
+      try {
+        isloading.value = true;
 
-    try {
-      isloading.value =true;
-
-      var url = Uri.parse("https://mediadwi.com/api/latihan/login");
-      var response = await http.post(
+        final url = Uri.parse("https://mediadwi.com/api/latihan/login");
+        final response = await http.post(
           url,
-      body: {
-            'username': emailController,
-            'password': passwordController,
-      },
-      );
+          body: {
+            'username': emailController.text,
+            'password': passwordController.text,
+          },
+        );
+        isloading.value = false;
 
-      isloading.value = false;
+        if (response.statusCode == 200) {
+          loginModel.value = loginModelFromJson ( response.body);
 
-      if (response.statusCode == 200) {
-        var data = jsonDecode(response.body);
-        bool status = data['status'] ?? false;
-        String message = data['message'] ?? "Login Gagal";
-
-        onResult(status, message);
-      } else {
-        onResult(false, "terjadi kesalahan pada server");
+          if (loginModel.value?.status == true) {
+            Get.snackbar("berhasil", loginModel.value!.message.toString());
+          } else {
+            Get.snackbar("gagal", loginModel.value!.message.toString());
+          }
+        }else {
+          Get.snackbar("gagal", "cek internet connection");
+        }
+      }catch (e) {
+        isloading.value = false;
+        Get.snackbar("gagal", e.toString());
+        print("error nya " + e.toString());
       }
-    } catch (e) {
-      isloading.value = false;
-      onResult(false, e.toString());
     }
   }
 }
