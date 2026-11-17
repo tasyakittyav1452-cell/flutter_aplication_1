@@ -9,7 +9,7 @@ class LoginController extends GetxController {
   final TextEditingController passwordController = TextEditingController();
 
   var isloading = false.obs;
-
+  // merender ulang pagenya,jadi ini untuk merender ulang di server API nya, ini mirip mirip dengan yang obs/obx itu
   var loginModel = Rxn<LoginModel>();
 
   //ubah tipe dungsi agar bisa memberikan laporan status ke page

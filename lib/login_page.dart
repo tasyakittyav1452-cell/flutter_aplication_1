@@ -17,12 +17,14 @@ class _LoginPageState extends State<LoginPage> {
           Container(
             margin: EdgeInsets.all(10),
             child: TextField(
-                decoration: InputDecoration(hint: Text("input username"))),
+                decoration: InputDecoration(hintText: "input username"),
+            ),
           ),
           Container(
             margin: EdgeInsets.all(10),
             child: TextField(
-                decoration: InputDecoration(hint: Text("input username"))),
+                decoration: InputDecoration(hintText: "input password"),
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
