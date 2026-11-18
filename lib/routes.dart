@@ -32,6 +32,5 @@ class Routes {
     GetPage(name: mainMenuPage, page: () => MainMenuPage()),
     GetPage(name: profile, page: () => const ProfilePage()),
     GetPage(name: kasirPage, page: () => const KasirPage()),
-
   ];
 }
