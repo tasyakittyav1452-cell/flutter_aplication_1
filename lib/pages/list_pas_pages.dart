@@ -3,6 +3,7 @@ import 'package:flutter_application_1/routes.dart';
 import 'package:get/get.dart';
 // import 'package:flutter_application_1/controller/list_produk_controller.dart';
 import 'package:flutter_application_1/controller/list_pas_controller.dart';
+import 'package:flutter_application_1/menu/Feat_pas_page.dart';
 
 import '../pas_model.dart';
 // import 'package:flutter_application_1/produk/produk_model.dart';
@@ -122,7 +123,7 @@ class ListPasPages extends StatelessWidget {
                   // arguments digunakan untuk mengirim data produk
                   // yang dipilih menuju halaman detail.
                   Get.toNamed(
-                      Routes.detailProduk,
+                      FeatPasPage() as String,
                       arguments: produk
                   );
                 },

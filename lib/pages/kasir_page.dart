@@ -223,8 +223,8 @@ class _KasirPageState extends State<KasirPage> {
                 // Menampilkan total harga barang
                 Text('Total Belanja: Rp $totalBelanja'),
 
-                // Menampilkan nominal diskon
-                Text('Potongan Diskon: Rp $potongan'),
+                // // Menampilkan nominal diskon
+                // Text('Potongan Diskon: Rp $potongan'),
 
                 // // Menampilkan harga setelah diskon
                 // Text('Harga Setelah Diskon: Rp $hargaDiskon'),
