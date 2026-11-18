@@ -10,46 +10,49 @@ class MainMenuPage extends StatefulWidget {
 }
 
 class _MainMenuPageState extends State<MainMenuPage> with SingleTickerProviderStateMixin {
-  // Catatan: Mengambil controller GetX yang bertugas mengatur alur halaman & menu
+  // Mengambil MainMenuController dari GetX.
+  // Controller ini bertugas mengatur perpindahan halaman.
   final menucontroller = Get.put(MainMenuController());
 
+  // Variabel untuk mengontrol animasi gradasi warna.
+  // late berarti nilainya akan diisi sebelum digunakan.
   // Catatan: Penggerak animasi warna gradasi di AppBar dan Header Drawer
   late AnimationController _drawerAnimController;
 
   @override
   void initState() {
     super.initState();
-    _drawerAnimController = AnimationController(
+    _drawerAnimController = AnimationController( // Membuat pengatur animasi dengan durasi 4 detik.
       vsync: this,
       duration: const Duration(seconds: 4), // Kecepatan animasi pergeseran warna
-    )..repeat(reverse: true);
+    )..repeat(reverse: true); // Animasi berjalan berulang dan bolak-balik.
   }
 
-  @override
+  @override // Fungsi untuk membersihkan animasi ketika halaman ditutup.
   void dispose() {
     _drawerAnimController.dispose();
     super.dispose();
   }
 
-  @override
+  @override // Fungsi untuk membangun tampilan halaman.
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
+    return Obx(() => Scaffold(  // Obx membuat tampilan diperbarui ketika nilai Rx berubah.
       // ==== APPBAR ATAS ====
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: AnimatedBuilder(
+        preferredSize: const Size.fromHeight(kToolbarHeight), // Mengatur tinggi AppBar sesuai tinggi toolbar standar Flutter.
+        child: AnimatedBuilder( // Membuat tampilan AppBar dapat mengikuti perubahan animasi.
           animation: _drawerAnimController,
           builder: (context, child) {
             return Container(
               decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: LinearGradient( // Membuat gradasi warna pada bagian AppBar.
                   colors: [Colors.black, Colors.purple.shade900, Colors.cyan.shade700, Colors.black],
-                  stops: [0.0, _drawerAnimController.value, 0.8, 1.0],
-                  begin: Alignment.topLeft,
+                  stops: [0.0, _drawerAnimController.value, 0.8, 1.0],  // Mengatur posisi perubahan warna gradasi.
+                  begin: Alignment.topLeft, // Mengatur arah gradasi.
                   end: Alignment.bottomRight,
                 ),
               ),
-              child: AppBar(
+              child: AppBar( // Membuat AppBar dengan latar belakang transparan.
                 title: const Text("Aplikasi Utama", style: TextStyle(color: Colors.white)),
                 backgroundColor: Colors.transparent, // Biar gradasi di belakangnya kelihatan
                 foregroundColor: Colors.white,
@@ -61,15 +64,15 @@ class _MainMenuPageState extends State<MainMenuPage> with SingleTickerProviderSt
       ),
 
       // ==== MENU DRAWER (POSISI MENU LEBIH NAIK & NEAT) ====
-      drawer: Drawer(
+      drawer: Drawer( // Drawer adalah menu samping yang bisa dibuka dari AppBar.
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             // Catatan: Header Drawer dibuat ukurannya lebih ringkas (tinggi 130)
             // supaya daftar pilihan menu di bawahnya otomatis tertarik lebih naik ke atas.
-            SizedBox(
+            SizedBox( // Membuat bagian header atau kepala Drawer.
               height: 130,
-              child: AnimatedBuilder(
+              child: AnimatedBuilder( // Membuat animasi gradasi warna pada header Drawer.
                 animation: _drawerAnimController,
                 builder: (context, child) {
                   return Container(
@@ -80,8 +83,8 @@ class _MainMenuPageState extends State<MainMenuPage> with SingleTickerProviderSt
                         end: Alignment.bottomCenter,
                       ),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-                    alignment: Alignment.bottomLeft,
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20), // Mengatur jarak isi dari tepi Container.
+                    alignment: Alignment.bottomLeft, // Mengatur posisi tulisan ke kiri bawah.
                     child: const Text(
                       "Menu Drawer",
                       style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
@@ -95,33 +98,33 @@ class _MainMenuPageState extends State<MainMenuPage> with SingleTickerProviderSt
             ListTile(
               leading: const Icon(Icons.home),
               title: const Text("Home"),
-              onTap: () {
-                Get.back(); // Tutup drawer
-                menucontroller.changePage(0); // Pindah ke halaman Home
+              onTap: () { // Fungsi ketika menu Home ditekan.
+                Get.back(); // Menutup Drawer.
+                menucontroller.changePage(0); // Membuka halaman Home.
               },
             ),
             ListTile(
               leading: const Icon(Icons.history),
               title: const Text("History"),
               onTap: () {
-                Get.back();
-                menucontroller.changePage(1); // Pindah ke halaman History
+                Get.back(); // Menutup Drawer.
+                menucontroller.changePage(1); // Membuka halaman History.
               },
             ),
             ListTile(
               leading: const Icon(Icons.person),
               title: const Text("Profile"),
               onTap: () {
-                Get.back();
-                menucontroller.changePage(2); // Pindah ke halaman Profile
+                Get.back(); // Menutup Drawer.
+                menucontroller.changePage(2); // Membuka halaman Profile.
               },
             ),
-            const Divider(),
+            const Divider(), // Membuat garis pembatas antar menu.
             ListTile(
               leading: const Icon(Icons.exit_to_app, color: Colors.red),
               title: const Text("Exit App", style: TextStyle(color: Colors.red)),
               onTap: () {
-                menucontroller.exitApp(); // Keluar aplikasi
+                menucontroller.exitApp(); // Keluar dari aplikasi.
               },
             ),
           ],
@@ -129,7 +132,7 @@ class _MainMenuPageState extends State<MainMenuPage> with SingleTickerProviderSt
       ),
 
       // Catatan: Menampilkan halaman sesuai dengan menu yang di-klik di Controller
-      body: IndexedStack(
+      body: IndexedStack( // Menampilkan halaman berdasarkan index yang dipilih.
         index: menucontroller.selectedIndex.value,
         children: menucontroller.listPages,
       ),

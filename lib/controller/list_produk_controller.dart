@@ -7,20 +7,39 @@ import 'package:flutter_application_1/product_model.dart';
 // Halaman list tinggal mengambil data dari sini
 class ListProdukController extends GetxController {
   // buat menyimpan teks yang diketik di kolom pencarian
+  // TextEditingController digunakan untuk mengontrol teks yang diketik pengguna dalam kolom pencarian
   final TextEditingController searchController = TextEditingController();
 
+  //RxList digunakan untuk menyimpan daftar produk secara reaktif
+  // <ProductModel> berarti daftar ini berisi objek ProductModel
+  // .obs membuat data dapat diamati oleh Getx
+  // jika data berubah, tampilan yang menggunakan obx dapat diperbarui
   final RxList<ProductModel> listproduk = <ProductModel>[].obs;
+
+  // variabel untuk mengetahui apakah proses loading sedang berlangsung
+  // false = tidak loading
+  // true = sedang loading
+  // .obs membuat variabel bersifat reaktif
   var isloading = false.obs;
+
+  get listpas => null;
 
   @override
   void onInit() {
+    // memanggil onInit() milik GetxController digunakan untuk menjalankan proses awal dari controller
     super.onInit();
+    // memanggil fungsi untuk mengambil atau memuat data produk
     loadProdukDariJson();
   }
 
+  // Fungsi; memuat data produk dari JSON
   void loadProdukDariJson() {
+    // mengubah status loading menjadi true
+    // artinya proses memuat data sedang berlangsung
     isloading.value = true;
 
+    // string digunakan untuk menyimpan teks JSON
+    // tanda ''' digunakan untuk menulis teks beberapa baris
     String jsonString = '''
     [
       {
@@ -53,16 +72,28 @@ class ListProdukController extends GetxController {
     ]
     ''';
 
+    // mengubah data JSON menjadi daftar objek productModel hasilnya dimasukkan ke dalam listproduk
+    // .value digunakan untuk mengganti isi RxList
     listproduk.value = productModelFromJson(jsonString);
+    // mengubah status loading menjadi false
+    // artinya proses memuat data sudah selesai
     isloading.value = false;
   }
 
+  // Fungsi : memperbarui atau memuat ulang data produk
+  // Future<void> digunakan untuk fungsi asynchronous yang tidak mengembalikan nilai
   Future<void> refreshProduk() async{
+    // memberikan jeda selama 1 detik
+    // digunakan untuk simulasi proses refresh
     await Future.delayed(const Duration(seconds: 1));
+    // memanggil kembali fungsi untuk memuat data produk
    loadProdukDariJson();
   }
 
+  //Fungsi : menghapus produk dari daftar
+  // parameter ProductModel produk berisi objek produk yang ingin dihapus
   void hapusProduk(ProductModel produk) {
+    // menghapus produk yang dipilih dari listproduk
     listproduk.remove(produk);
   }
 }

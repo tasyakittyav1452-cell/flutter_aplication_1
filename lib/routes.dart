@@ -1,3 +1,4 @@
+import 'package:flutter_application_1/latihan_soal_perhitungan.dart';
 import 'package:flutter_application_1/menu/profile_page.dart';
 import 'package:flutter_application_1/pages/confirm_registration.dart';
 import 'package:flutter_application_1/pages/login_clone_fix.dart';
@@ -16,6 +17,8 @@ class Routes {
   static const String detailProduk = "/detailProduk";
   static const String mainMenuPage = "/mainmenupage";
   static const String profile = "/profile";
+  static const String kasirPage = "/kasirpage";
+
 
 
   // FUNGSI: Daftar halaman yang menghubungkan nama rute dengan widget halamannya
@@ -28,6 +31,7 @@ class Routes {
     GetPage(name: detailProduk, page: () => DetailProdukPage()),
     GetPage(name: mainMenuPage, page: () => MainMenuPage()),
     GetPage(name: profile, page: () => const ProfilePage()),
+    GetPage(name: kasirPage, page: () => const KasirPage()),
 
   ];
 }
