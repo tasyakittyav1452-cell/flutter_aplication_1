@@ -2,6 +2,8 @@ import 'package:flutter_application_1/latihan_soal_perhitungan.dart';
 import 'package:flutter_application_1/menu/profile_page.dart';
 import 'package:flutter_application_1/pages/confirm_registration.dart';
 import 'package:flutter_application_1/pages/login_clone_fix.dart';
+import 'package:flutter_application_1/pages/login_pas_page.dart';
+import 'package:flutter_application_1/pages/main_menu_pas_pages.dart';
 import 'package:flutter_application_1/pages/registration_page.dart';
 import 'package:flutter_application_1/pages/list_produk_pages.dart';
 import 'package:flutter_application_1/pages/detail_produk_page.dart';
@@ -18,6 +20,8 @@ class Routes {
   static const String mainMenuPage = "/mainmenupage";
   static const String profile = "/profile";
   static const String kasirPage = "/kasirpage";
+  static const String loginPasPage = "/loginpaspage";
+  static const String mainMenuPasPage = "/mainmenupaspage";
 
 
 
@@ -32,5 +36,7 @@ class Routes {
     GetPage(name: mainMenuPage, page: () => MainMenuPage()),
     GetPage(name: profile, page: () => const ProfilePage()),
     GetPage(name: kasirPage, page: () => const KasirPage()),
+    GetPage(name: loginPasPage, page: () => const LoginPasPage()),
+    GetPage(name: mainMenuPasPage, page: () => MainMenuPasPages()),
   ];
 }

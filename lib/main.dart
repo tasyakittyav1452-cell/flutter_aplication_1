@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/login_pas_page.dart';
 import 'package:flutter_application_1/routes.dart';
 import 'package:get/get.dart';
 
@@ -15,8 +16,10 @@ class MyApp extends StatelessWidget {
     // Get.toNamed / Get.back / getPages bisa dipakai
     return GetMaterialApp(
         title: "BelajarFlutter PPLG 3",
-      initialRoute: Routes.loginClone, // halaman pertama yang dibuka
-      getPages: Routes.myPages, // daftar semua rute
+      debugShowCheckedModeBanner: false,
+
+      // FUNGSI: Menentukan halaman mana yang pertama kali muncul saat aplikasi dibuka.
+      home: const LoginPasPage(),
     );
   }
 }
