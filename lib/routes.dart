@@ -23,6 +23,7 @@ class Routes {
   static const String loginPasPage = "/loginpaspage";
   static const String mainMenuPasPage = "/mainmenupaspage";
 
+
   // FUNGSI: Daftar halaman yang menghubungkan nama rute dengan widget halamannya
   static final myPages = [
     GetPage(name: loginClone, page: () => const LoginCloneFixPage()),
